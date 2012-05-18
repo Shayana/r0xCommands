@@ -8,9 +8,9 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class Vault {
 	protected r0xCommands plugin;
-    public static Economy econ = null;
-    public static Permission perms = null;
-    public static Chat chat = null;
+    public  Economy econ = null;
+    public  Permission perms = null;
+    public  Chat chat = null;
 
     	public Vault(r0xCommands plugin){
     		this.plugin = plugin;
