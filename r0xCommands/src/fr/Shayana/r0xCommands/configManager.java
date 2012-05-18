@@ -34,7 +34,9 @@ public class configManager {
 	
 	
 //Informations Téléportation
-	
+	public String superTP(){
+		return plugin.getConfig().getString("SuperTP");
+	}
 	
 	
 }
