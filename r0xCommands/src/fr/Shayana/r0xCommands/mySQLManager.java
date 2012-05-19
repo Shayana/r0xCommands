@@ -6,6 +6,8 @@ public class mySQLManager {
 	protected r0xCommands plugin;
 	protected configManager config;
 	
+	boolean homeDefini;
+	
 	public mySQLManager(r0xCommands plugin){
 		this.plugin = plugin;
 	}

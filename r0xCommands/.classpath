@@ -2,21 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/home/shayana/workspace/Libs/bukkit-.jar" sourcepath="/home/shayana/workspace/Libs/bukkit-.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://jd.bukkit.org/apidocs/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/shayana/workspace/Libs/snakeyaml-1.10.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://snakeyamlrepo.appspot.com/releases/1.10/site/apidocs"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/shayana/workspace/Libs/mysql-connector-java-5.1.20.zip"/>
-	<classpathentry kind="lib" path="/home/shayana/workspace/Libs/Vault.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://mythcraft.dyndns.org/javadoc/vault/index.html?net/milkbowl/vault/permission/Permission.html"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Gaëtan/Documents/Minecraft/Programmation/Plugin/craftbukkit-1.2.5-R1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gaëtan/Documents/Minecraft/Programmation/Plugin/mysql-connector-java-5.1.20.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Gaëtan/Documents/Minecraft/Programmation/Plugin/Vault.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

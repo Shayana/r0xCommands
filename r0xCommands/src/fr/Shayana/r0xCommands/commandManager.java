@@ -33,25 +33,32 @@ public class commandManager {
 			
 			Utils utils = new Utils(plugin, player, args);
 			utils.Commands_who();
-			
-			return true;
 		}
 		
 		else if(label.equalsIgnoreCase("home")) {
 			
 			Home home = new Home(plugin, player);
 			home.Command_home();
+		}
+		
+		else if(label.equalsIgnoreCase("tp")) {
 			
-			return true;
+			Teleport tp = new Teleport(plugin, player, args);
+			tp.Commands_tp();
+		}
+		
+		else if(label.equalsIgnoreCase("tph") || label.equalsIgnoreCase("bring")) {
+			
+			Teleport tph = new Teleport(plugin, player, args);
+			tph.Commands_tph();
 		}
 		
 		else if(label.equalsIgnoreCase("spawn")) {
 			
 			Spawn spawn = new Spawn(player);
 			spawn.Commands_spawn();
-			
-			return true;
 		}
+		
 		return true;
 	}
 }
