@@ -115,7 +115,7 @@ public class Teleport {
 		        return;
 		      }
 			  	
-		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
+		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
 			  	
 		        p1.teleport(player);
 		      }	
