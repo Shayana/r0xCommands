@@ -25,7 +25,7 @@ public class Teleport {
 		
 			if (args.length < 1){
 		  	
-				player.sendMessage(ChatColor.RED +"Vous devez spécifier un endroit ou vous téléporter !");
+				player.sendMessage(ChatColor.RED +"Vous devez spï¿½cifier un endroit ou vous tï¿½lï¿½porter !");
 			  	
 				return;	
 		    }
@@ -49,9 +49,9 @@ public class Teleport {
 			  	
 		        else {
 			  	
-		          player.sendMessage(ChatColor.BLUE+ "Demande de téléportation envoyée à "+ p1.getDisplayName());
+		          player.sendMessage(ChatColor.BLUE+ "Demande de tï¿½lï¿½portation envoyï¿½e ï¿½ "+ p1.getDisplayName());
 		  	
-		          p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais se téléporter à vous, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
+		          p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais se tï¿½lï¿½porter ï¿½ vous, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
 			  	
 		          tpMap.put(p1, player);
 		        }
@@ -76,9 +76,9 @@ public class Teleport {
 		            return;
 		          }
 			  	
-		          p1.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " vous téléporte à "+ p2.getDisplayName());
+		          p1.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " vous tï¿½lï¿½porte ï¿½ "+ p2.getDisplayName());
 			  	
-		          p2.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " téléporte "+ p1.getDisplayName() +" à votre position");
+		          p2.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " tï¿½lï¿½porte "+ p1.getDisplayName() +" ï¿½ votre position");
 			  	
 		          p1.teleport(p2);
 		          
@@ -117,11 +117,12 @@ public class Teleport {
 			  	
 		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
 			  	
-		        player.teleport(p1);
+		        p1.teleport(player);
 		      }	
 		      else {
 			  	
-		        tpMap.put(player, p1);
+		        p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais vous tÃ©lÃ©porter Ã  lui, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
+		    	tpMap.put(player, p1);
 		      }
 			
 			return;
@@ -154,7 +155,7 @@ public class Teleport {
 				Location location = new Location(player.getWorld(), x, y, z);
 				
 				p1.teleport(location);
-				p1.sendMessage(ChatColor.RED + player.getName() + " vous a téléporté à la position " + x + " " + y + " " + z);
+				p1.sendMessage(ChatColor.RED + player.getName() + " vous a tï¿½lï¿½portï¿½ ï¿½ la position " + x + " " + y + " " + z);
 			}
 			else {
 				
