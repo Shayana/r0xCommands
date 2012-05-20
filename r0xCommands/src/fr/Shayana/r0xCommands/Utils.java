@@ -58,7 +58,7 @@ public class Utils {
 			}
 			else if(j == 0) {
 				
-				player.sendMessage(ChatColor.BLUE +" Il n'y a actuellement aucun "+ ChatColor.GREEN + args[0] + " connecté");
+				player.sendMessage(ChatColor.BLUE +"Il n'y a actuellement aucun "+ ChatColor.GREEN + args[0] + " connecté");
 			}
 			
 			return;

@@ -31,8 +31,8 @@ public class commandManager {
 		
 		if (label.equalsIgnoreCase("who")) {
 			
-			Utils utils = new Utils(plugin, player, args);
-			utils.Commands_who();
+			Utils who = new Utils(plugin, player, args);
+			who.Commands_who();
 		}
 		
 		else if(label.equalsIgnoreCase("home")) {

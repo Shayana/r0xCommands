@@ -3,6 +3,7 @@ package fr.Shayana.r0xCommands;
 import java.util.HashMap;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class Teleport {
@@ -27,8 +28,35 @@ public class Teleport {
 				player.sendMessage(ChatColor.RED +"Vous devez spécifier un endroit ou vous téléporter !");
 			  	
 				return;	
-		     }  	
-			else if (args.length > 1){
+		    }
+			else if (args.length == 1) {
+				
+				Player p1 = plugin.getServer().getPlayer(args[0]);
+			  	
+		        if (p1 == null) {
+			  	
+		          player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+			  	
+		          return;
+			  	
+		        }
+			  	
+		        if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
+			  	
+				player.teleport(p1);
+			  	
+		        }
+			  	
+		        else {
+			  	
+		          player.sendMessage(ChatColor.BLUE+ "Demande de téléportation envoyée à "+ p1.getDisplayName());
+		  	
+		          p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais se téléporter à vous, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
+			  	
+		          tpMap.put(p1, player);
+		        }
+			}
+			else if (args.length == 2) {
 			  	
 		       if (!(plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))){
 			  	
@@ -56,35 +84,19 @@ public class Teleport {
 		          
 		       }
 		       
-		       return;
-		       
+		       return;    
 			}
-			else if (args.length == 1){
+			else if(args.length == 3) {
 				
-				Player p1 = plugin.getServer().getPlayer(args[0]);
-			  	
-		        if (p1 == null) {
-			  	
-		          player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
-			  	
-		          return;
-			  	
-		        }
-			  	
-		        if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
-			  	
-				player.teleport(p1);
-			  	
-		        }
-			  	
-		        else {
-			  	
-		          player.sendMessage(ChatColor.BLUE+ "Demande de téléportation envoyée à "+ p1.getDisplayName());
-		  	
-		          p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais se téléporter à vous, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
-			  	
-		          tpMap.put(p1, player);
-		        }
+				if((plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))) {
+					int x = Integer.parseInt(args[0]);
+					int y = Integer.parseInt(args[1]);
+					int z = Integer.parseInt(args[2]);
+					
+					Location location = new Location(player.getWorld(), x, y, z);
+					
+					player.teleport(location);
+				}
 			}
 		
 		return;
