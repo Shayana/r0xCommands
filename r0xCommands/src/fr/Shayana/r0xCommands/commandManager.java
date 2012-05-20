@@ -53,6 +53,12 @@ public class commandManager {
 			tph.Commands_tph();
 		}
 		
+		else if(label.equalsIgnoreCase("put")) {
+			
+			Teleport put = new Teleport(plugin, player, args);
+			put.Commands_put();
+		}
+		
 		else if(label.equalsIgnoreCase("spawn")) {
 			
 			Spawn spawn = new Spawn(player);
