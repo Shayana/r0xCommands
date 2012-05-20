@@ -1,9 +1,9 @@
 package fr.Shayana.r0xCommands;
 
 import java.util.HashMap;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class Teleport {
@@ -41,7 +41,7 @@ public class Teleport {
 			  	
 		        }
 			  	
-		        if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
+		        if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
 			  	
 				player.teleport(p1);
 			  	
@@ -49,7 +49,7 @@ public class Teleport {
 			  	
 		        else {
 			  	
-		          player.sendMessage(ChatColor.BLUE+ "Demande de téléportation envoyée à "+ p1.getDisplayName());
+		          player.sendMessage(ChatColor.BLUE + "Demande de téléportation envoyée à " + p1.getDisplayName());
 		  	
 		          p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais se téléporter à vous, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
 			  	
@@ -117,11 +117,12 @@ public class Teleport {
 			  	
 		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
 			  	
-		        player.teleport(p1);
+		        p1.teleport(player);
 		      }	
 		      else {
 			  	
-		        tpMap.put(player, p1);
+		    	  p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais vous téléporter à lui, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
+		    	  tpMap.put(player, p1);
 		      }
 			
 			return;
@@ -164,6 +165,43 @@ public class Teleport {
 		else {
 			
 			player.sendMessage(ChatColor.RED + "Vous n'avez pas la permission de faire ceci !");
+		}
+	}
+	
+	public void Commands_tpall() {
+		
+		if(plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
+			
+			if(args.length == 0) {
+				
+				player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + player.getName());
+				
+				for(World w : player.getServer().getWorlds()) {
+					
+					for(Player p : w.getPlayers()) {
+						
+						p.teleport(player);
+					}
+				}
+			}
+			else if(args.length == 1) {
+				
+				Player p1 = plugin.getServer().getPlayer(args[0]); 
+				
+				if(args.length == 0) {
+					
+					player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
+					p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
+					
+					for(World w : player.getServer().getWorlds()) {
+						
+						for(Player p : w.getPlayers()) {
+							
+							p.teleport(p1);
+						}
+					}
+				}
+			}
 		}
 	}
 
