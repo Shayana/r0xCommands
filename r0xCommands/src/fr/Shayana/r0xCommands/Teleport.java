@@ -89,9 +89,9 @@ public class Teleport {
 			else if(args.length == 3) {
 				
 				if((plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))) {
-					int x = Integer.parseInt(args[0]);
-					int y = Integer.parseInt(args[1]);
-					int z = Integer.parseInt(args[2]);
+					double x = Double.parseDouble(args[0]);
+					double y = Double.parseDouble(args[1]);
+					double z = Double.parseDouble(args[2]);
 					
 					Location location = new Location(player.getWorld(), x, y, z);
 					
@@ -104,24 +104,70 @@ public class Teleport {
 	
 	public void Commands_tph() {
 		
-		Player p1 = plugin.getServer().getPlayer(args[0]);
-	  	
-	      if (p1 == null){
+		if(args.length > 0) {
+			
+			Player p1 = plugin.getServer().getPlayer(args[0]);
 		  	
-	        player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
-		  	
-	        return;
-	      }
-		  	
-	      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
-		  	
-	        player.teleport(p1);
-	      }	
-	      else {
-		  	
-	        tpMap.put(player, p1);
-	      }
-		
-		return;
+		      if (p1 == null){
+			  	
+		        player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+			  	
+		        return;
+		      }
+			  	
+		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())){
+			  	
+		        player.teleport(p1);
+		      }	
+		      else {
+			  	
+		        tpMap.put(player, p1);
+		      }
+			
+			return;
+		}
+		else {
+			
+			player.sendMessage(ChatColor.RED + "Veuillez indiquer un joueur");
+		}
 	}
+	
+	public void Commands_put() {
+		
+		if(plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
+			
+			if(args.length == 4) {
+				
+				Player p1 = plugin.getServer().getPlayer(args[0]);
+				
+				if(p1 == null) {
+					
+					player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellemnt.");
+					
+					return;
+				}
+				
+				double x = Double.parseDouble(args[1]);
+				double y = Double.parseDouble(args[2]);
+				double z = Double.parseDouble(args[3]);
+				
+				Location location = new Location(player.getWorld(), x, y, z);
+				
+				p1.teleport(location);
+				p1.sendMessage(ChatColor.RED + player.getName() + " vous a téléporté à la position " + x + " " + y + " " + z);
+			}
+			else {
+				
+				player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe");
+			}
+		}
+		else {
+			
+			player.sendMessage(ChatColor.RED + "Vous n'avez pas la permission de faire ceci !");
+		}
+	}
+
+	
+	
+	
 }
