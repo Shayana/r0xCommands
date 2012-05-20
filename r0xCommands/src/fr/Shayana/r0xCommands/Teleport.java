@@ -187,20 +187,17 @@ public class Teleport {
 			else if(args.length == 1) {
 				
 				Player p1 = plugin.getServer().getPlayer(args[0]); 
-				
-				if(args.length == 0) {
 					
-					player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
-					p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
+				player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
+				p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
 					
-					for(World w : player.getServer().getWorlds()) {
+				for(World w : player.getServer().getWorlds()) {
 						
-						for(Player p : w.getPlayers()) {
+					for(Player p : w.getPlayers()) {
 							
-							p.teleport(p1);
-						}
+						p.teleport(p1);
 					}
-				}
+				}	
 			}
 		}
 	}
