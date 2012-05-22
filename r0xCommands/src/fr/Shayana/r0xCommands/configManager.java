@@ -33,7 +33,7 @@ public class configManager {
 	
 	
 	
-//Informations Téléportation
+//Informations Teleportation
 	public String superTP(){
 		return plugin.getConfig().getString("SuperTP");
 	}
