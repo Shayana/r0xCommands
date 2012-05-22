@@ -1,6 +1,8 @@
 package fr.Shayana.r0xCommands;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -97,6 +99,10 @@ public class Teleport {
 					
 					player.teleport(location);
 				}
+				else {
+					
+					player.sendMessage(ChatColor.RED +"Vous n'avez pas la permission de faire ceci !");
+				}
 			}
 		
 		return;
@@ -188,24 +194,67 @@ public class Teleport {
 				
 				Player p1 = plugin.getServer().getPlayer(args[0]); 
 				
-				if(args.length == 0) {
+				player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
+				p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
 					
-					player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
-					p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
-					
-					for(World w : player.getServer().getWorlds()) {
+				for(World w : player.getServer().getWorlds()) {
 						
-						for(Player p : w.getPlayers()) {
+					for(Player p : w.getPlayers()) {
 							
-							p.teleport(p1);
-						}
+						p.teleport(p1);
 					}
 				}
 			}
 		}
 	}
-
 	
+	public void Command_accept() {
+		
+		for(Entry<Player, Player> entry : tpMap.entrySet()) {
+			
+			Player key = entry.getKey();
+			Player value = entry.getValue();
+			
+			if(key == player) {
+				
+				value.teleport(player);
+				tpMap.remove(key);
+				return;
+			}
+			else if(value == player) {
+				
+				player.teleport(key);
+				tpMap.remove(key);
+				return;
+			}
+		}
+		
+		player.sendMessage(ChatColor.RED + "Personne ne vous a demandé une téléportation.");
+	}
+
+	public void Command_refuse() {
+		
+		for(Entry<Player, Player> entry : tpMap.entrySet()) {
+			
+			Player key = entry.getKey();
+			Player value = entry.getValue();
+			
+			if(key == player) {
+				
+				value.sendMessage(ChatColor.RED + key.getName() + " a refusé votre invitation");
+				tpMap.remove(key);
+				return;
+			}
+			else if(value == player) {
+				
+				key.sendMessage(ChatColor.RED + value.getName() + " a refusé votre invition");
+				tpMap.remove(key);
+				return;
+			}
+		}
+		
+		player.sendMessage(ChatColor.RED + "Personne ne vous a envoyé d'invitation");
+	}
 	
 	
 }

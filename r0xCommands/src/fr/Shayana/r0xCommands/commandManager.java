@@ -65,6 +65,18 @@ public class commandManager {
 			put.Commands_put();
 		}
 		
+		else if(label.equalsIgnoreCase("accept")) {
+			
+			Teleport accept = new Teleport(plugin, player, args);
+			accept.Command_accept();
+		}
+		
+		else if(label.equalsIgnoreCase("refuse")) {
+			
+			Teleport refuse = new Teleport(plugin, player, args);
+			refuse.Command_refuse();
+		}
+		
 		else if(label.equalsIgnoreCase("spawn")) {
 			
 			Spawn spawn = new Spawn(player);
