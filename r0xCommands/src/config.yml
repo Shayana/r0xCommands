@@ -1,0 +1,8 @@
+MySQL:
+  url: default
+  password: default
+  username: default
+  port: default
+  database: default
+
+  SuperTP: CilagINept
