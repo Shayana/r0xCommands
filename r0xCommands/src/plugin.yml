@@ -1,0 +1,32 @@
+name: r0xCommands
+main: fr.Shayana.r0xCommands.r0xCommands
+author: Shayana
+version: 0.3
+commands:
+  who:
+    description:Indique le nombre de joueurs connectes ou d'un groupe
+    usage: /who <group>
+  home:
+    description: Tp a home ou a un home d'un joueur
+    usage: /home [player]
+  tp:
+    description: Teleporte a un joueur ou un joueur a un autre ou a une position
+    usage: /tp <player> <player> <x> <y> <z>
+  tph:
+    description: demande de tp un joueur a votre position
+    usage: /tph <player>
+  tpall:
+    description: teleporte tous les joueurs a vous ou a un joueur
+    usage: /tpall <player>
+  put:
+    description: tp un joueur a une position
+    usage: /put <x> <y> <z>
+  accept:
+    description: accepte une teleportation
+    usage: /accept
+  refuse:
+    description: refuse une teleportation
+    usage: /refuse
+  spawn:
+    description: teleport au point de spawn
+    usage: /spawn
