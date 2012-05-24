@@ -201,7 +201,54 @@ public class Teleport {
 			}
 		}
 	}
+	
+	public void Command_accept() {
+		
+		for(Entry<Player, Player> entry : tpMap.entrySet()) {
+			
+			Player key = entry.getKey();
+			Player value = entry.getValue();
+			
+			if(key == player) {
+				
+				value.teleport(player);
+				tpMap.remove(key);
+				return;
+			}
+			else if(value == player) {
+				
+				player.teleport(key);
+				tpMap.remove(key);
+				return;
+			}
+		}
+		
+		player.sendMessage(ChatColor.RED + "Personne ne vous a demandé une téléportation.");
+	}
 
+	public void Command_refuse() {
+		
+		for(Entry<Player, Player> entry : tpMap.entrySet()) {
+			
+			Player key = entry.getKey();
+			Player value = entry.getValue();
+			
+			if(key == player) {
+				
+				value.sendMessage(ChatColor.RED + key.getName() + " a refusé votre invitation");
+				tpMap.remove(key);
+				return;
+			}
+			else if(value == player) {
+				
+				key.sendMessage(ChatColor.RED + value.getName() + " a refusé votre invition");
+				tpMap.remove(key);
+				return;
+			}
+		}
+		
+		player.sendMessage(ChatColor.RED + "Personne ne vous a envoyé d'invitation");
+	}
 	
 	
 	
