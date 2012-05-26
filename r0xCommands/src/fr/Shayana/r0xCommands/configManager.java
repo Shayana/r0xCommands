@@ -5,6 +5,7 @@ public class configManager {
 	protected r0xCommands plugin;
 	
 	public configManager(r0xCommands plugin){
+		
 		this.plugin = plugin;
 	}
 	

@@ -67,7 +67,5 @@ public class Utils {
 			
 			player.sendMessage(ChatColor.RED +"Vous ne pouvez spécifier qu'un seul groupe à la fois !");
 		}
-		
-		return;
 	}
 }

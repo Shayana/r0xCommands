@@ -9,21 +9,24 @@ public class mySQLManager {
 
 	
 	protected r0xCommands plugin;
-	protected configManager config;
 	
 	Statement stmt;
 	Connection con;
 	ResultSet rs;
 	
+	String user;
+	String mdp;
+	String url;
+	
 	boolean homeDefini;
 	
-	String user = plugin.config.user();
-	String mdp = plugin.config.pass();
-	String url = plugin.config.url();
-	
-	public mySQLManager(r0xCommands plugin, configManager config){
+	public mySQLManager(r0xCommands plugin) {
+		
 		this.plugin = plugin;
-		this.config = config;
+		
+		user = plugin.config.user();
+		mdp = plugin.config.pass();
+		url = plugin.config.url();
 	}
 	
 	public void Connection() {

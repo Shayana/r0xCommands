@@ -13,8 +13,9 @@ public class r0xCommands extends JavaPlugin {
 	
 	@Override
 	public void onEnable(){
+		
 		this.config = new configManager(this);
-		this.mysql = new mySQLManager(this, config);
+		this.mysql = new mySQLManager(this);
 		this.cmd = new commandManager(this);
 		this.vault = new Vault(this);
 		vault.setupVault();
