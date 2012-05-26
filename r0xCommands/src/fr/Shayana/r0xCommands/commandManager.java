@@ -89,6 +89,12 @@ public class commandManager {
 			suicide.Commands_suicide();
 		}
 		
+		else if(label.equalsIgnoreCase("kill")) {
+			
+			Utils kill = new Utils(plugin, player, args);
+			kill.Commands_kill();
+		}
+		
 		return true;
 	}
 }

@@ -5,10 +5,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
 
+import org.bukkit.entity.Player;
+
+
+@SuppressWarnings("unused")
 public class mySQLManager {
 
-	
-	protected r0xCommands plugin;
+	r0xCommands plugin;
 	
 	Statement stmt;
 	Connection con;

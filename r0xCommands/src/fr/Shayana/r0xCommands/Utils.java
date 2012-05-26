@@ -74,4 +74,29 @@ public class Utils {
 		player.setHealth(0);
 		player.getServer().broadcastMessage(ChatColor.BLUE + player.getName() + ChatColor.RED + " ne tient plus à la vie");
 	}
+	
+	public void Commands_kill() {
+		
+		if(args.length == 0) {
+			
+			player.setHealth(0);
+			player.getServer().broadcastMessage(ChatColor.BLUE + player.getName() + ChatColor.RED + " ne tient plus à la vie");
+			
+			return;
+		}
+		if(args.length == 1) {
+			
+			Player p1 = plugin.getServer().getPlayer(args[0]);
+			
+			if(p1 == null) {
+				
+				player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+			}
+			else {
+				
+				p1.setHealth(0);
+				plugin.getServer().broadcastMessage(ChatColor.BLUE + p1.getName() + ChatColor.RED + " n'est aps très amis avec " + ChatColor.BLUE + player.getName());
+			}
+		}
+	}
 }
