@@ -19,33 +19,59 @@ public class Vault {
 
        
 public void setupVault(){
+	
 	this.setupChat();
 	this.setupEconomy();
 	this.setupPermissions();
 }
     
 	private boolean setupEconomy() {
+		
         if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
+        
         RegisteredServiceProvider<Economy> rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
+        
         if (rsp == null) {
-            return false;
+            
+        	return false;
         }
+        
         econ = rsp.getProvider();
         return econ != null;
     }
 
-    private boolean setupChat() {
+	private boolean setupChat() {
+		
+		if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+		
         RegisteredServiceProvider<Chat> rsp = plugin.getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
+        
+        if(rsp == null) {
+        	
+        	return false;
+        }
+        
+        chat = rsp.getProvider();       
         return chat != null;
     }
 
-    private boolean setupPermissions() {
+	private boolean setupPermissions() {
+		if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+		
         RegisteredServiceProvider<Permission> rsp = plugin.getServer().getServicesManager().getRegistration(Permission.class);
+        
+        if(rsp == null) {
+        	
+        	return false;
+        }
+        
         perms = rsp.getProvider();
         return perms != null;
-    
   }
 }

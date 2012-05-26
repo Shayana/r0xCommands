@@ -1,0 +1,6 @@
+MySQL:
+  username: root
+  url: localhost
+  password:
+  port: 
+  database: minecraftsave

@@ -2,7 +2,6 @@ package fr.Shayana.r0xCommands;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;

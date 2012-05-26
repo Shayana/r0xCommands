@@ -21,11 +21,8 @@ public class mySQLManager {
 	String mdp = plugin.config.pass();
 	String url = plugin.config.url();
 	
-	public mySQLManager(r0xCommands plugin){
+	public mySQLManager(r0xCommands plugin, configManager config){
 		this.plugin = plugin;
-	}
-	
-	public mySQLManager(configManager config){
 		this.config = config;
 	}
 	
