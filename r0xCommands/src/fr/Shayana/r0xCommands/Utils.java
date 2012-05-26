@@ -68,4 +68,10 @@ public class Utils {
 			player.sendMessage(ChatColor.RED +"Vous ne pouvez spécifier qu'un seul groupe à la fois !");
 		}
 	}
+	
+	public void Commands_suicide() {
+		
+		player.setHealth(0);
+		player.getServer().broadcastMessage(ChatColor.BLUE + player.getName() + ChatColor.RED + " ne tient plus à la vie");
+	}
 }

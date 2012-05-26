@@ -83,6 +83,12 @@ public class commandManager {
 			spawn.Commands_spawn();
 		}
 		
+		else if(label.equalsIgnoreCase("suicide")) {
+			
+			Utils suicide = new Utils(plugin, player, args);
+			suicide.Commands_suicide();
+		}
+		
 		return true;
 	}
 }
