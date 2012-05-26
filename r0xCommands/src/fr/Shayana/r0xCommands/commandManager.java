@@ -79,7 +79,7 @@ public class commandManager {
 		
 		else if(label.equalsIgnoreCase("spawn")) {
 			
-			Spawn spawn = new Spawn(player);
+			Spawn spawn = new Spawn(player, plugin);
 			spawn.Commands_spawn();
 		}
 		

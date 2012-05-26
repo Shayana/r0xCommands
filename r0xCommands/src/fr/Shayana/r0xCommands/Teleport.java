@@ -206,6 +206,10 @@ public class Teleport {
 				}
 			}
 		}
+		else {
+			
+			player.sendMessage(ChatColor.RED + "Vous n'avez pas la permission de faire ceci !");
+		}
 	}
 	
 	public void Command_accept() {
