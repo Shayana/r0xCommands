@@ -26,7 +26,7 @@ public class mySQLManager {
 		
 		user = plugin.config.user();
 		mdp = plugin.config.pass();
-		url = plugin.config.url();
+		url = "jdbc:mysql://" + plugin.config.url() + ":" + plugin.config.port() + "/" + plugin.config.database();
 	}
 	
 	public void Connection() {
