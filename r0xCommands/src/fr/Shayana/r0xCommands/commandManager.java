@@ -27,7 +27,7 @@ public class commandManager {
 		Player player = (Player) sender;	
 		Teleport teleport = new Teleport(plugin, player, args);
 		Utils utils = new Utils(plugin, player, args);
-		Spawn spawn = new Spawn(player, plugin);
+		Spawn spawn = new Spawn(player, plugin, args);
 		Home home = new Home(plugin, player);
 		
 
@@ -38,22 +38,14 @@ public class commandManager {
 			return true;
 		}
 		
-		if (label.equalsIgnoreCase("who")) {
-			
-			utils.Commands_who();
-		}
-		
-		else if(label.equalsIgnoreCase("home")) {
-			
-			home.Command_home();
-		}
+		// Les commandes de teleportations
 		
 		else if(label.equalsIgnoreCase("tp")) {
 			
 			tpMap = teleport.Commands_tp(tpMap);
 		}
 		
-		else if(label.equalsIgnoreCase("tph") || label.equalsIgnoreCase("bring")) {
+		else if(label.equalsIgnoreCase("tph")) {
 			
 			teleport.Commands_tph(tpMap);
 		}
@@ -78,9 +70,11 @@ public class commandManager {
 			teleport.Command_refuse(tpMap);
 		}
 		
-		else if(label.equalsIgnoreCase("spawn")) {
+		// Les divers commandes
+		
+		if (label.equalsIgnoreCase("who")) {
 			
-			spawn.Commands_spawn();
+			utils.Commands_who();
 		}
 		
 		else if(label.equalsIgnoreCase("suicide")) {
@@ -93,6 +87,25 @@ public class commandManager {
 			utils.Commands_kill();
 		}
 		
+		// Les commandes du spawn
+		
+		else if(label.equalsIgnoreCase("spawn")) {
+			
+			spawn.Commands_spawn();
+		}
+		
+		else if(label.equalsIgnoreCase("putspawn")) {
+			
+			spawn.Commands_putspawn();
+		}
+		
+		// Les commandes du Home
+		
+		else if(label.equalsIgnoreCase("home")) {
+			
+			home.Command_home();
+		}
+				
 		return true;
 	}
 }
