@@ -220,14 +220,12 @@ public class Teleport {
 
 				value.teleport(player);
 				tpMap.remove(key);
-				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
 				return tpMap;
 			}
 			else if(value == player) {
 
 				player.teleport(key);
 				tpMap.remove(key);
-				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
 				return tpMap;
 			}
 		}
@@ -250,14 +248,12 @@ public class Teleport {
 
 				value.sendMessage(ChatColor.RED + key.getName() + " a refusé votre invitation.");
 				tpMap.remove(key);
-				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
 				return tpMap;
 			}
 			else if(value == player) {
 
 				key.sendMessage(ChatColor.RED + value.getName() + " a refusé votre invition.");
 				tpMap.remove(key);
-				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
 				return tpMap;
 			}
 		}
