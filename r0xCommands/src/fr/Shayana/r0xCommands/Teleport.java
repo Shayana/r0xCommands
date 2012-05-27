@@ -1,6 +1,6 @@
 package fr.Shayana.r0xCommands;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,7 +13,7 @@ public class Teleport {
 	Player player;
 	String args[];
 	
-	private HashMap<Player, Player> tpMap;
+	Map<Player, Player> tpMap;
 	
 	public Teleport(r0xCommands plugin, Player player, String args[]) {
 		
@@ -22,13 +22,15 @@ public class Teleport {
 		this.args = args;
 	}
 	
-	public void Commands_tp() {
+	public Map<Player, Player> Commands_tp(Map<Player, Player> Map) {
+		
+		tpMap = Map;
 		
 			if (args.length < 1){
 		  	
 				player.sendMessage(ChatColor.RED +"Vous devez spécifier un endroit ou vous téléporter !");
 			  	
-				return;	
+				return tpMap;	
 		    }
 			else if (args.length == 1) {
 				
@@ -38,7 +40,7 @@ public class Teleport {
 			  	
 		          player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
 			  	
-		          return;
+		          return tpMap;
 			  	
 		        }
 			  	
@@ -74,7 +76,7 @@ public class Teleport {
 			  	
 		        	  player.sendMessage(ChatColor.RED+ "Erreur sur l'un des noms de joueurs.");
 			  	
-		            return;
+		            return tpMap;
 		          }
 			  	
 		          p1.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " vous téléporte à "+ p2.getDisplayName());
@@ -85,7 +87,7 @@ public class Teleport {
 		          
 		       }
 		       
-		       return;    
+		       return tpMap;    
 			}
 			else if(args.length == 3) {
 				
@@ -100,10 +102,12 @@ public class Teleport {
 				}
 			}
 		
-		return;
+		return tpMap;
 	}
 	
-	public void Commands_tph() {
+	public Map<Player, Player> Commands_tph(Map<Player, Player> Map) {
+		
+		tpMap = Map;
 		
 		if(args.length > 0) {
 			
@@ -113,7 +117,7 @@ public class Teleport {
 			  	
 		        player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
 			  	
-		        return;
+		        return tpMap;
 		      }
 			  	
 		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
@@ -126,12 +130,14 @@ public class Teleport {
 		    	  tpMap.put(player, p1);
 		      }
 			
-			return;
+			return tpMap;
 		}
 		else {
 			
 			player.sendMessage(ChatColor.RED + "Veuillez indiquer un joueur");
 		}
+		
+		return tpMap;
 	}
 	
 	public void Commands_put() {
@@ -207,51 +213,64 @@ public class Teleport {
 		}
 	}
 	
-	public void Command_accept() {
+	public Map<Player, Player> Command_accept(Map<Player, Player> Map) {
+		
+		tpMap = Map;
 		
 		for(Entry<Player, Player> entry : tpMap.entrySet()) {
-			
+
 			Player key = entry.getKey();
 			Player value = entry.getValue();
-			
+
 			if(key == player) {
-				
+
 				value.teleport(player);
 				tpMap.remove(key);
-				return;
+				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
+				return tpMap;
 			}
 			else if(value == player) {
-				
+
 				player.teleport(key);
 				tpMap.remove(key);
-				return;
+				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
+				return tpMap;
 			}
 		}
 		
 		player.sendMessage(ChatColor.RED + "Personne ne vous a demandé une téléportation.");
+		
+		return tpMap;
 	}
 
-	public void Command_refuse() {
+	public Map<Player, Player> Command_refuse(Map<Player, Player> Map) {
+		
+		tpMap = Map;
 		
 		for(Entry<Player, Player> entry : tpMap.entrySet()) {
-			
+
 			Player key = entry.getKey();
 			Player value = entry.getValue();
-			
+
 			if(key == player) {
-				
-				value.sendMessage(ChatColor.RED + key.getName() + " a refusé votre invitation");
+
+				value.sendMessage(ChatColor.RED + key.getName() + " a refusé votre invitation.");
 				tpMap.remove(key);
-				return;
+				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
+				return tpMap;
 			}
 			else if(value == player) {
-				
-				key.sendMessage(ChatColor.RED + value.getName() + " a refusé votre invition");
+
+				key.sendMessage(ChatColor.RED + value.getName() + " a refusé votre invition.");
 				tpMap.remove(key);
-				return;
+				player.getServer().broadcastMessage(ChatColor.RED + "Test réussi !");
+				return tpMap;
 			}
 		}
 		
-		player.sendMessage(ChatColor.RED + "Personne ne vous a envoyé d'invitation");
-	}	
+		player.sendMessage(ChatColor.RED + "Personne ne vous a demandé une téléportation");
+		
+		return tpMap;
+	}
+
 }

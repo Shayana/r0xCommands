@@ -20,3 +20,7 @@ commands:
     description: accepter une teleportation
   refuse:
     description: refuser une teleportation
+  suicide:
+    description: si vous ne tenez plus a la vie
+  kill:
+    description: si vous n'aimez pas quelqu'un

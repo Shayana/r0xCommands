@@ -1,5 +1,8 @@
 package fr.Shayana.r0xCommands;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -9,18 +12,24 @@ import org.bukkit.event.EventHandler;
 public class commandManager {
 
 	protected r0xCommands plugin;
+	
+	Map<Player, Player> tpMap;
 
-	public commandManager(r0xCommands plugin){
+	public commandManager(r0xCommands plugin) {
+		
+		tpMap = new HashMap<Player, Player>();
 		this.plugin = plugin;
 	}
 
-
-
-
 	@EventHandler
 	public boolean onCommand(CommandSender sender, Command command, String label, String args[]){
-		Player player = (Player) sender;
-
+		
+		Player player = (Player) sender;	
+		Teleport teleport = new Teleport(plugin, player, args);
+		Utils utils = new Utils(plugin, player, args);
+		Spawn spawn = new Spawn(player, plugin);
+		Home home = new Home(plugin, player);
+		
 
 		if (sender instanceof Player && !(plugin.vault.perms.has(sender, "rc."+label))) {
 			
@@ -31,68 +40,57 @@ public class commandManager {
 		
 		if (label.equalsIgnoreCase("who")) {
 			
-			Utils who = new Utils(plugin, player, args);
-			who.Commands_who();
+			utils.Commands_who();
 		}
 		
 		else if(label.equalsIgnoreCase("home")) {
 			
-			Home home = new Home(plugin, player);
 			home.Command_home();
 		}
 		
 		else if(label.equalsIgnoreCase("tp")) {
 			
-			Teleport tp = new Teleport(plugin, player, args);
-			tp.Commands_tp();
+			tpMap = teleport.Commands_tp(tpMap);
 		}
 		
 		else if(label.equalsIgnoreCase("tph") || label.equalsIgnoreCase("bring")) {
 			
-			Teleport tph = new Teleport(plugin, player, args);
-			tph.Commands_tph();
+			teleport.Commands_tph(tpMap);
 		}
 		
 		else if(label.equalsIgnoreCase("tpall")) {
 			
-			Teleport tpall = new Teleport(plugin, player, args);
-			tpall.Commands_tpall();
+			teleport.Commands_tpall();
 		}
 		
 		else if(label.equalsIgnoreCase("put")) {
 			
-			Teleport put = new Teleport(plugin, player, args);
-			put.Commands_put();
+			teleport.Commands_put();
 		}
 		
 		else if(label.equalsIgnoreCase("accept")) {
 			
-			Teleport accept = new Teleport(plugin, player, args);
-			accept.Command_accept();
+			teleport.Command_accept(tpMap);
 		}
 		
 		else if(label.equalsIgnoreCase("refuse")) {
 			
-			Teleport refuse = new Teleport(plugin, player, args);
-			refuse.Command_refuse();
+			teleport.Command_refuse(tpMap);
 		}
 		
 		else if(label.equalsIgnoreCase("spawn")) {
 			
-			Spawn spawn = new Spawn(player, plugin);
 			spawn.Commands_spawn();
 		}
 		
 		else if(label.equalsIgnoreCase("suicide")) {
 			
-			Utils suicide = new Utils(plugin, player, args);
-			suicide.Commands_suicide();
+			utils.Commands_suicide();
 		}
 		
 		else if(label.equalsIgnoreCase("kill")) {
 			
-			Utils kill = new Utils(plugin, player, args);
-			kill.Commands_kill();
+			utils.Commands_kill();
 		}
 		
 		return true;
