@@ -2,12 +2,6 @@ name: r0xCommands
 version: 3
 main: fr.Shayana.r0xCommands.r0xCommands
 commands:
-  who:
-    description: indique le nombre de joueurs sur le serveur ou d'un groupe
-  home:
-    description: teleporte au home
-  spawn:
-    description: teleporte au spawn
   tp:
     description: permet de se teleporter a un joueur, un joueur a un autre ou a une position
   tph:
@@ -20,7 +14,15 @@ commands:
     description: accepter une teleportation
   refuse:
     description: refuser une teleportation
+  who:
+    description: indique le nombre de joueurs sur le serveur ou d'un groupe
   suicide:
     description: si vous ne tenez plus a la vie
   kill:
     description: si vous n'aimez pas quelqu'un
+  spawn:
+    description: teleporte au spawn
+  putspawn:
+    description: teleporte un joueur au spawn
+  home:
+    description: teleporte au home
