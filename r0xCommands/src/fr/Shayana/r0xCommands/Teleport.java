@@ -2,9 +2,9 @@ package fr.Shayana.r0xCommands;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class Teleport {
@@ -171,39 +171,26 @@ public class Teleport {
 	
 	public void Commands_tpall() {
 		
-		if(plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
-			
-			if(args.length == 0) {
+		if(args.length == 0) {
 				
-				player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + player.getName());
+			player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + player.getName());
 				
-				for(World w : player.getServer().getWorlds()) {
-					
-					for(Player p : w.getPlayers()) {
+			for(Player p : Bukkit.getOnlinePlayers()) {
 						
-						p.teleport(player);
-					}
-				}
-			}
-			else if(args.length == 1) {
-				
-				Player p1 = plugin.getServer().getPlayer(args[0]); 
-					
-				player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
-				p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
-					
-				for(World w : player.getServer().getWorlds()) {
-						
-					for(Player p : w.getPlayers()) {
-							
-						p.teleport(p1);
-					}
-				}	
+				p.teleport(player);
 			}
 		}
-		else {
-			
-			player.sendMessage(ChatColor.RED + "Vous n'avez pas la permission de faire ceci !");
+		else if(args.length == 1) {
+				
+			Player p1 = plugin.getServer().getPlayer(args[0]); 
+					
+			player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
+			p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
+					
+			for(Player p : Bukkit.getOnlinePlayers()) {
+				
+				p.teleport(p1);
+			}	
 		}
 	}
 	
