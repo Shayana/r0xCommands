@@ -1,5 +1,8 @@
 package fr.Shayana.r0xCommands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class configManager {
 	
 	protected r0xCommands plugin;
@@ -30,6 +33,17 @@ public class configManager {
 	
 	public String database(){
 		return plugin.getConfig().getString("MySQL.database");
+	}
+	
+	
+	public List<String> kit(String group){
+		ArrayList<String> kit = (ArrayList<String>) plugin.getConfig().getStringList("Kits."+ group);
+		return kit;
+	}
+	
+	public List<String>kits(){
+		ArrayList<String> kits = (ArrayList<String>)plugin.getConfig().getStringList("Kits");
+		return kits;
 	}
 	
 	

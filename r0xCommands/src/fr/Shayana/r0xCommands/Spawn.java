@@ -30,7 +30,7 @@ public class Spawn {
 			
 			sql.Connection();
 			sql.con = sql.stmt.getConnection();
-			sql.stmt.executeQuery(""); //A compléter
+			sql.stmt.executeQuery(""); //A complï¿½ter
 			sql.rs = sql.stmt.getResultSet();
 			
 			x = sql.rs.getDouble("x");
@@ -58,7 +58,7 @@ public class Spawn {
 				
 				sql.Connection();
 				sql.con = sql.stmt.getConnection();
-				sql.stmt.executeQuery(""); //A compléter
+				sql.stmt.executeQuery(""); //A complï¿½ter
 				sql.rs = sql.stmt.getResultSet();
 				
 				x = sql.rs.getDouble("x");

@@ -29,7 +29,7 @@ public class commandManager {
 		Utils utils = new Utils(plugin, player, args);
 		Spawn spawn = new Spawn(player, plugin, args);
 		Home home = new Home(plugin, player);
-		
+		Kits kit = new Kits(player, args[0]);
 
 		if (sender instanceof Player && !(plugin.vault.perms.has(sender, "rc."+label))) {
 			
@@ -87,6 +87,15 @@ public class commandManager {
 			utils.Commands_kill();
 		}
 		
+		else if (label.equalsIgnoreCase("kit")){
+			
+			kit.giveKit();	
+		}
+		
+		else if (label.equalsIgnoreCase("kits")){
+			
+			kit.sendList();
+		}
 		// Les commandes du spawn
 		
 		else if(label.equalsIgnoreCase("spawn")) {
@@ -105,7 +114,8 @@ public class commandManager {
 			
 			home.Command_home();
 		}
-				
+		
+		
 		return true;
 	}
 }
