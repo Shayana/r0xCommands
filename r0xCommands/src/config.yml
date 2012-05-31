@@ -1,6 +1,22 @@
-MySQL:
-   username: default
-   url: default
-   password: ''
-   port: ''
-   database: default
+#                                                   #Fichier de configuration de r0xCommands#
+#                                            #Reportez vous au wiki de r0x.fr pour plus d'informations#
+sql:
+  user: minecraft
+  password: 5GJv5M47Bsyqwt5E
+  url: localhost
+supertp:
+- group
+- group
+- group
+kits:
+  cooldown: 30
+  group:
+  - APPLE
+  - WOODSWORD
+  - WOODAXE
+  - WOODPICKAXE
+  group2:
+  - APPLE
+  - WOODSWORD
+  - WOODAXE
+  - WOODPICKAXE
