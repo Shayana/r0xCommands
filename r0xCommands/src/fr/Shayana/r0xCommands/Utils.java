@@ -137,7 +137,7 @@ public class Utils {
 				p.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
 			}
 		}
-		else if(args.length == 2) {
+		else if(args.length == 2 && !args[0].equalsIgnoreCase("list")) {
 			
 			Material mat = Material.matchMaterial(args[0]);
 			int nbMat = Integer.parseInt(args[1]);
@@ -164,11 +164,27 @@ public class Utils {
 				player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
 			}
 		}
-		else if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
-					
+		else if(args.length == 2 && args[0].equalsIgnoreCase("list")) {
+			
+			int nbPage = Integer.parseInt(args[1]);
+			int ligne = 10;
+			int i = 0;
+			int j = 0;
+			
 			for(Material mat : Material.values()) {
 				
-				player.sendMessage(mat.name());
+				if(i <= ligne) {
+					
+					if(j == nbPage) {
+						player.sendMessage(mat.name());
+					}
+					i++;
+				}
+				else {
+					
+					i = 0;
+					j++;
+				}
 			}
 		}
 		else {
