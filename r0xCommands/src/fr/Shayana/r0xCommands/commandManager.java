@@ -96,6 +96,11 @@ public class commandManager {
 			
 			kit.sendList();
 		}
+		
+		else if (label.equalsIgnoreCase("give")) {
+			
+			utils.Commands_give();
+		}
 		// Les commandes du spawn
 		
 		else if(label.equalsIgnoreCase("spawn")) {

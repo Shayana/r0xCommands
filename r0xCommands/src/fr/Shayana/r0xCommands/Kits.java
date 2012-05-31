@@ -29,15 +29,13 @@ public Kits(r0xCommands plugin){
 			return false;
 		}
 		else if (!(plugin.vault.perms.has(p, "kits."+kit.toLowerCase())) || (!plugin.vault.perms.playerInGroup(p, kit))){
-			p.sendMessage(ChatColor.YELLOW +"Vous n'avez pas accès à ce kit.");
+			p.sendMessage(ChatColor.YELLOW +"Vous n'avez pas acc�s à ce kit.");
 			return false;
 		}
 		else {
 			return true;
 		}
 	}
-	
-	
 	
 
 

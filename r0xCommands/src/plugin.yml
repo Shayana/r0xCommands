@@ -26,3 +26,5 @@ commands:
     description: teleporte un joueur au spawn
   home:
     description: teleporte au home
+  give:
+    description: donne a un joueur un item

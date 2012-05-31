@@ -1,7 +1,9 @@
 package fr.Shayana.r0xCommands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class Utils {
 	
@@ -72,7 +74,7 @@ public class Utils {
 	public void Commands_suicide() {
 		
 		player.setHealth(0);
-		player.getServer().broadcastMessage(ChatColor.BLUE + player.getName() + ChatColor.RED + " ne tient plus à la vie");
+		player.getServer().broadcastMessage(ChatColor.RED + player.getName() + " ne tient plus à la vie");
 	}
 	
 	public void Commands_kill() {
@@ -80,7 +82,7 @@ public class Utils {
 		if(args.length == 0) {
 			
 			player.setHealth(0);
-			player.getServer().broadcastMessage(ChatColor.BLUE + player.getName() + ChatColor.RED + " ne tient plus à la vie");
+			player.getServer().broadcastMessage(ChatColor.RED + player.getName() + " ne tient plus à la vie");
 			
 			return;
 		}
@@ -95,8 +97,83 @@ public class Utils {
 			else {
 				
 				p1.setHealth(0);
-				plugin.getServer().broadcastMessage(ChatColor.BLUE + p1.getName() + ChatColor.RED + " n'est aps très amis avec " + ChatColor.BLUE + player.getName());
+				plugin.getServer().broadcastMessage(ChatColor.RED + p1.getName() + " n'est pass très amis avec " + player.getName());
 			}
+		}
+	}
+	
+	public void Commands_give() {
+		
+		if(args.length == 3) {
+			
+			Player p = plugin.getServer().getPlayer(args[0]);
+			Material mat = Material.matchMaterial(args[1]);
+			int nbMat = Integer.parseInt(args[2]);
+			
+			if(p == null) {
+				
+				player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+				return;
+			}
+			if(mat == null) {
+				
+				player.sendMessage(ChatColor.RED + args[1] + " n'est pas un matériel valide.");
+				return;
+			}
+			if(nbMat > 64) {
+				
+				int nbStack = nbMat/64;
+				int reste = nbMat%64;
+				
+				for(int j = 0; j < nbStack; j++) {
+					
+					p.getInventory().addItem(new ItemStack[] { new ItemStack(mat, 64) });
+				}
+				
+				p.getInventory().addItem(new ItemStack[] { new ItemStack(mat, reste) });
+			}
+			else {
+				
+				p.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
+			}
+		}
+		else if(args.length == 2) {
+			
+			Material mat = Material.matchMaterial(args[0]);
+			int nbMat = Integer.parseInt(args[1]);
+			
+			if(mat == null) {
+				
+				player.sendMessage(ChatColor.RED + args[0] + " n'est pas un matériel valide.");
+				return;
+			}
+			if(nbMat > 64) {
+				
+				int nbStack = nbMat/64;
+				int reste = nbMat%64;
+				
+				for(int j = 0; j < nbStack; j++) {
+					
+					player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, 64) });
+				}
+				
+				player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, reste) });
+			}
+			else {
+				
+				player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
+			}
+		}
+		else if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
+					
+			for(Material mat : Material.values()) {
+				
+				player.sendMessage(mat.name());
+			}
+		}
+		else {
+			
+			player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe de la commande.");
 		}
 	}
 }
