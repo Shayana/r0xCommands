@@ -28,3 +28,5 @@ commands:
     description: teleporte au home
   give:
     description: donne a un joueur un item
+  time:
+    description: modifie le temps

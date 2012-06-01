@@ -101,6 +101,11 @@ public class commandManager {
 			
 			utils.Commands_give();
 		}
+		
+		else if(label.equalsIgnoreCase("time")) {
+			
+			utils.Commands_time();
+		}
 		// Les commandes du spawn
 		
 		else if(label.equalsIgnoreCase("spawn")) {

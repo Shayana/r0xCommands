@@ -137,55 +137,93 @@ public class Utils {
 				p.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
 			}
 		}
-		else if(args.length == 2 && !args[0].equalsIgnoreCase("list")) {
+		else if(args.length == 2) {
 			
-			Material mat = Material.matchMaterial(args[0]);
-			int nbMat = Integer.parseInt(args[1]);
-			
-			if(mat == null) {
+			if(!args[0].equalsIgnoreCase("list")) {
 				
-				player.sendMessage(ChatColor.RED + args[0] + " n'est pas un matériel valide.");
-				return;
-			}
-			if(nbMat > 64) {
+				Material mat = Material.matchMaterial(args[0]);
+				int nbMat = Integer.parseInt(args[1]);
 				
-				int nbStack = nbMat/64;
-				int reste = nbMat%64;
-				
-				for(int j = 0; j < nbStack; j++) {
+				if(mat == null) {
 					
-					player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, 64) });
+					player.sendMessage(ChatColor.RED + args[0] + " n'est pas un matériel valide.");
+					return;
 				}
-				
-				player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, reste) });
-			}
-			else {
-				
-				player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
-			}
-		}
-		else if(args.length == 2 && args[0].equalsIgnoreCase("list")) {
-			
-			int nbPage = Integer.parseInt(args[1]);
-			int ligne = 10;
-			int i = 0;
-			int j = 0;
-			
-			for(Material mat : Material.values()) {
-				
-				if(i <= ligne) {
+				if(nbMat > 64) {
 					
-					if(j == nbPage) {
-						player.sendMessage(mat.name());
+					int nbStack = nbMat/64;
+					int reste = nbMat%64;
+					
+					for(int j = 0; j < nbStack; j++) {
+						
+						player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, 64) });
 					}
-					i++;
+					
+					player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, reste) });
 				}
 				else {
 					
-					i = 0;
-					j++;
+					player.getInventory().addItem(new ItemStack[] { new ItemStack(mat, nbMat) });
 				}
 			}
+			
+			else {
+				
+				int nbPage = Integer.parseInt(args[1]);
+				int nbPageTot = 26;
+				int nbLigne = 9;
+				int ligne = 0;
+				int page = 0;
+				
+							
+				player.sendMessage(ChatColor.GOLD + "----- Page : " + nbPage + " sur : " + nbPageTot + " -----");
+				
+				for(Material mat : Material.values()) {
+					
+					if(ligne < nbLigne) {
+						
+						if(page == nbPage) {
+							player.sendMessage(mat.name());
+						}
+						ligne++;
+					}
+					else {
+						
+						ligne = 0;
+						page++;
+					}
+				}
+			}
+			
+			
+		}
+		else {
+			
+			player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe de la commande.");
+		}
+	}
+	
+	public void Commands_time() {
+		
+		if(args.length == 1) {
+			
+			if(args[0].equalsIgnoreCase("day")) {
+				
+				player.getWorld().setTime(0);
+			}
+			else if(args[0].equalsIgnoreCase("night")) {
+				
+				player.getWorld().setTime(12000);
+			}
+			else {
+				
+				player.sendMessage(ChatColor.RED + "Argument invialide.");
+			}
+		}
+		else if(args.length == 2 && args[0].equalsIgnoreCase("set")) {
+			
+			int time = Integer.parseInt(args[1]);
+			player.getWorld().setTime(time);
 		}
 		else {
 			
