@@ -35,6 +35,11 @@ public class configManager {
 		return plugin.getConfig().getString("MySQL.database");
 	}
 	
+	public List<String> rules() {
+		
+		ArrayList<String> rules = (ArrayList<String>) plugin.getConfig().getStringList("rules");
+		return rules;
+	}
 	
 	public List<String> kit(String group){
 		ArrayList<String> kit = (ArrayList<String>) plugin.getConfig().getStringList("Kits."+ group);

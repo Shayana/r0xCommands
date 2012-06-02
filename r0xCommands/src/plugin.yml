@@ -30,3 +30,7 @@ commands:
     description: donne a un joueur un item
   time:
     description: modifie le temps
+  clear:
+    description: nettoye son inventaire, ou celui d'un joueur
+  me:
+    description: message a la troiseme personne

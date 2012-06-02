@@ -230,4 +230,50 @@ public class Utils {
 			player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe de la commande.");
 		}
 	}
+	
+	public void Commands_clear() {
+		
+		if(args.length == 0) {
+			
+			player.getInventory().clear();
+		}
+		else if(args.length == 1) {
+			
+			if(player.hasPermission("rc.clear.admin")) {
+				
+				Player p = plugin.getServer().getPlayer(args[0]);
+				
+				if(p == null) {
+					
+					player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+				}
+				else {
+					
+					p.getInventory().clear();
+				}
+			}
+			else {
+				
+				player.sendMessage(ChatColor.RED +"Vous n'avez pas la permission de faire ceci !");
+			}
+		}
+		else {
+			
+			player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe de la commande.");
+		}
+	}
+	
+	public void Commands_me() {
+		
+		StringBuilder builder = new StringBuilder();
+		
+		for(int i = 0; i < args.length ; i++) {
+			
+			builder.append(args[i]);
+			builder.append(" ");
+		}
+		
+		plugin.getServer().broadcastMessage(player.getDisplayName() + " " + builder.toString());
+	}
+
 }

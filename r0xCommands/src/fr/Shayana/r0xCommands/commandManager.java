@@ -40,7 +40,7 @@ public class commandManager {
 		
 		// Les commandes de teleportations
 		
-		else if(label.equalsIgnoreCase("tp")) {
+		if(label.equalsIgnoreCase("tp")) {
 			
 			tpMap = teleport.Commands_tp(tpMap);
 		}
@@ -72,7 +72,7 @@ public class commandManager {
 		
 		// Les divers commandes
 		
-		if (label.equalsIgnoreCase("who")) {
+		else if (label.equalsIgnoreCase("who")) {
 			
 			utils.Commands_who();
 		}
@@ -106,6 +106,17 @@ public class commandManager {
 			
 			utils.Commands_time();
 		}
+		
+		else if(label.equalsIgnoreCase("clear")) {
+			
+			utils.Commands_clear();
+		}
+		
+		else if(label.equalsIgnoreCase("me")) {
+			
+			utils.Commands_me();
+		}
+		
 		// Les commandes du spawn
 		
 		else if(label.equalsIgnoreCase("spawn")) {
