@@ -327,10 +327,92 @@ public class Utils {
 			if(s.contentEquals(plugin.config.color("red"))) {
 				
 				build.append(ChatColor.RED + s.replace(plugin.config.color("red"), ""));
+				build.append(" ");
 			}
 			else if(s.contentEquals(plugin.config.color("blue"))) {
 				
 				build.append(ChatColor.BLUE + s.replace(plugin.config.color("blue"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("green"))) {
+				
+				build.append(ChatColor.GREEN + s.replace(plugin.config.color("green"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("black"))) {
+				
+				build.append(ChatColor.BLACK + s.replace(plugin.config.color("black"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("gold"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("gold"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("gray"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("gray"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("aqua"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("aqua"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("yellow"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("yellow"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("white"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("white"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("light purple"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("light purple"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("dark blue"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("dark blue"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("dark green"))) {
+	
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("dark green"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("dark aqua"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("dark aqua"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("dark red"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("dark red"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("dark purple"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("dark purple"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("dark gray"))) {
+				
+				build.append(ChatColor.GOLD + s.replace(plugin.config.color("dark gray"), ""));
+				build.append(" ");
+			}
+			else if(s.contentEquals(plugin.config.color("reset"))) {
+				
+				build.append(ChatColor.WHITE + s.replace(plugin.config.color("reset"), ""));
+				build.append(" ");
+			}
+			else {
+				
+				build.append(s);
+				build.append(" ");
 			}
 		}
 	}
