@@ -26,15 +26,15 @@ public class Utils {
 			
 			if (i > 1){
 				
-				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.GREEN + i +" joueurs connectés.");
+				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.GREEN + i +" joueurs connectï¿½s.");
 			}
 			else if (i == 1) {
 				
-				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.BLUE + i +" joueur connecté");
+				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.BLUE + i +" joueur connectï¿½");
 			}
 			else if(i == 0) {
 				
-				player.sendMessage(ChatColor.RED +"Il n'y a aucun joueur connecté");
+				player.sendMessage(ChatColor.RED +"Il n'y a aucun joueur connectï¿½");
 			}
 		}
 		else if(args.length == 1) {
@@ -52,29 +52,29 @@ public class Utils {
 			
 			if (j > 1) {
 				
-				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.GREEN + j + plugin.vault.chat.getGroupPrefix(player.getWorld(), args[0]) + args[0] +" connectés.");
+				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.GREEN + j + plugin.vault.chat.getGroupPrefix(player.getWorld(), args[0]) + args[0] +" connectï¿½s.");
 			}
 			else if (j == 1) {
 				
-				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.GREEN + j + plugin.vault.chat.getGroupPrefix(player.getWorld(), args[0]) + args[0] +" connecté.");
+				player.sendMessage(ChatColor.BLUE +"Il y a actuellement "+ ChatColor.GREEN + j + plugin.vault.chat.getGroupPrefix(player.getWorld(), args[0]) + args[0] +" connectï¿½.");
 			}
 			else if(j == 0) {
 				
-				player.sendMessage(ChatColor.BLUE +"Il n'y a actuellement aucun "+ ChatColor.GREEN + args[0] + " connecté");
+				player.sendMessage(ChatColor.BLUE +"Il n'y a actuellement aucun "+ ChatColor.GREEN + args[0] + " connectï¿½");
 			}
 			
 			return;
 		}
 		else {
 			
-			player.sendMessage(ChatColor.RED +"Vous ne pouvez spécifier qu'un seul groupe à la fois !");
+			player.sendMessage(ChatColor.RED +"Vous ne pouvez spï¿½cifier qu'un seul groupe ï¿½ la fois !");
 		}
 	}
 	
 	public void Commands_suicide() {
 		
 		player.setHealth(0);
-		player.getServer().broadcastMessage(ChatColor.RED + player.getName() + " ne tient plus à la vie");
+		player.getServer().broadcastMessage(ChatColor.RED + player.getName() + " ne tient plus ï¿½ la vie");
 	}
 	
 	public void Commands_kill() {
@@ -82,7 +82,7 @@ public class Utils {
 		if(args.length == 0) {
 			
 			player.setHealth(0);
-			player.getServer().broadcastMessage(ChatColor.RED + player.getName() + " ne tient plus à la vie");
+			player.getServer().broadcastMessage(ChatColor.RED + player.getName() + " ne tient plus ï¿½ la vie");
 			
 			return;
 		}
@@ -97,7 +97,7 @@ public class Utils {
 			else {
 				
 				p1.setHealth(0);
-				plugin.getServer().broadcastMessage(ChatColor.RED + p1.getName() + " n'est pass très amis avec " + player.getName());
+				plugin.getServer().broadcastMessage(ChatColor.RED + p1.getName() + " n'est pass trï¿½s amis avec " + player.getName());
 			}
 		}
 	}
@@ -117,7 +117,7 @@ public class Utils {
 			}
 			if(mat == null) {
 				
-				player.sendMessage(ChatColor.RED + args[1] + " n'est pas un matériel valide.");
+				player.sendMessage(ChatColor.RED + args[1] + " n'est pas un matï¿½riel valide.");
 				return;
 			}
 			if(nbMat > 64) {
@@ -146,7 +146,7 @@ public class Utils {
 				
 				if(mat == null) {
 					
-					player.sendMessage(ChatColor.RED + args[0] + " n'est pas un matériel valide.");
+					player.sendMessage(ChatColor.RED + args[0] + " n'est pas un matï¿½riel valide.");
 					return;
 				}
 				if(nbMat > 64) {
@@ -217,7 +217,7 @@ public class Utils {
 			}
 			else {
 				
-				player.sendMessage(ChatColor.RED + "Argument invialide.");
+				player.sendMessage(ChatColor.RED + "Argument invialide");
 			}
 		}
 		else if(args.length == 2 && args[0].equalsIgnoreCase("set")) {
