@@ -1,5 +1,7 @@
 package fr.Shayana.r0xCommands;
 
+import java.util.Iterator;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -275,5 +277,18 @@ public class Utils {
 		
 		plugin.getServer().broadcastMessage(player.getDisplayName() + " " + builder.toString());
 	}
-
+	
+	public void Commands_rules() {
+		
+		Iterator<String> rules = plugin.config.rules().iterator();
+		int i = 1;
+		
+		while(rules.hasNext()) {
+			
+			StringBuilder build = new StringBuilder();
+			build.append("[" + i + "] : " + rules.next());
+			player.sendMessage(build.toString());
+			i++;
+		}
+	}
 }

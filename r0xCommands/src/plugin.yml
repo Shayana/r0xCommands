@@ -34,3 +34,5 @@ commands:
     description: nettoye son inventaire, ou celui d'un joueur
   me:
     description: message a la troiseme personne
+  rules:
+    description: affiche les regles

@@ -1,7 +1,6 @@
 package fr.Shayana.r0xCommands;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class Home {
