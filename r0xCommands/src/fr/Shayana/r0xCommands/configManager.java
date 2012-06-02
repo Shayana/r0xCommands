@@ -52,6 +52,10 @@ public class configManager {
 	}
 	
 	
+	public String color(String clr) {
+			
+		return plugin.getConfig().getString("color." + clr);
+	}
 	
 //Informations Teleportation
 	public String superTP(){

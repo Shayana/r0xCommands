@@ -138,6 +138,12 @@ public class commandManager {
 			utils.Commands_rules();
 		}
 		
+		else if(label.equalsIgnoreCase("broadcast")) {
+			
+			Utils utils = new Utils(plugin, player, args);
+			utils.Commands_broadcast();
+		}
+		
 		// Les commandes du spawn
 		
 		else if(label.equalsIgnoreCase("spawn")) {

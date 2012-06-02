@@ -291,4 +291,47 @@ public class Utils {
 			i++;
 		}
 	}
+	
+	public void Commands_whois() {
+		
+		if(args.length != 1) {
+			
+			player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe de la commande.");
+		}
+		else {
+			
+			Player p = plugin.getServer().getPlayer(args[0]);
+			
+			if(p == null) {
+				
+				player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+				return;
+			}
+			
+			player.sendMessage("Voici les différentes informations sur " + p.getDisplayName() + " : ");
+			player.sendMessage("- Le rang : " + plugin.vault.perms.getPrimaryGroup(p));
+			player.sendMessage("- Le monde : " + p.getWorld().getName());
+			player.sendMessage("- Le mode de jeu : " + p.getGameMode().getValue());
+			player.sendMessage("- Le niveau : " + p.getLevel());
+		}
+	}
+	
+	public void Commands_broadcast() {
+		
+		StringBuilder build = new StringBuilder();
+		
+		for(int i = 0; i < args.length ; i++) {
+			
+			String s = args[i];
+			
+			if(s.contentEquals(plugin.config.color("red"))) {
+				
+				build.append(ChatColor.RED + s.replace(plugin.config.color("red"), ""));
+			}
+			else if(s.contentEquals(plugin.config.color("blue"))) {
+				
+				build.append(ChatColor.BLUE + s.replace(plugin.config.color("blue"), ""));
+			}
+		}
+	}
 }
