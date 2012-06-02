@@ -2,13 +2,15 @@ package fr.Shayana.r0xCommands;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 
-@SuppressWarnings("unused")
 public class mySQLManager {
 
 	r0xCommands plugin;
@@ -21,7 +23,6 @@ public class mySQLManager {
 	String mdp;
 	String url;
 	
-	boolean homeDefini;
 	
 	public mySQLManager(r0xCommands plugin) {
 		
@@ -76,5 +77,31 @@ public class mySQLManager {
 			
 			e.printStackTrace();
 		}
+	}
+	
+	public Location homeDefini(Player p, String nom){
+		Connection();
+		try{
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Homes WHERE Player LIKE '"+ p.getName()+"' AND Nom Like '"+nom+"'");
+			if (rs.first()){
+				int x = rs.getInt("x");
+				int y = rs.getInt("y");
+				int z = rs.getInt("z");
+				float pitch = rs.getFloat("pitch");
+				float yaw = rs.getFloat("yaw");
+				String world = rs.getString("world");
+				return new Location(Bukkit.getWorld(world), x, y, z, pitch, yaw);
+			}
+			else {
+				return null;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return null;
+			
+		}
+	
 	}
 }
