@@ -2,7 +2,6 @@ package fr.Shayana.r0xCommands;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,17 +13,19 @@ public class commandManager {
 	protected r0xCommands plugin;
 	
 	Map<Player, Player> tpMap;
+	
+	String error_nbArgs;
 
 	public commandManager(r0xCommands plugin) {
 		
 		tpMap = new HashMap<Player, Player>();
+		error_nbArgs = new String(ChatColor.RED + "Veuillez respecter la syntaxe");
 		this.plugin = plugin;
 	}
 
 	@EventHandler
 	public boolean onCommand(CommandSender sender, Command command, String label, String args[]){
-			
-
+		
 		if (!(sender instanceof Player)) {
 			
 			return true;
@@ -34,7 +35,7 @@ public class commandManager {
 		
 		if(!(plugin.vault.perms.has(sender, "rc."+label))) {
 			
-			player.sendMessage(ChatColor.RED + "VOus n'avez pas la permission de faire ceci.");
+			player.sendMessage(ChatColor.RED + "Vous n'avez pas la permission de faire ceci.");
 			return true;
 		}
 		
@@ -42,38 +43,73 @@ public class commandManager {
 		
 		if(label.equalsIgnoreCase("tp")) {
 			
-			Teleport teleport = new Teleport(plugin, player, args);			
-			tpMap = teleport.Commands_tp(tpMap);
+			if(args.length > 1 && args.length < 4) {
+				
+				Teleport teleport = new Teleport(plugin, player, args);			
+				tpMap = teleport.Commands_tp(tpMap);
+			}
+			else {
+				
+				player.sendMessage(error_nbArgs);
+			}	
 		}
 		
 		else if(label.equalsIgnoreCase("tph")) {
 			
-			Teleport teleport = new Teleport(plugin, player, args);	
-			teleport.Commands_tph(tpMap);
+			if(args.length == 1) {
+				
+				Teleport teleport = new Teleport(plugin, player, args);	
+				tpMap = teleport.Commands_tph(tpMap);
+			}
+			else {
+				
+				player.sendMessage(error_nbArgs);
+			}
 		}
 		
 		else if(label.equalsIgnoreCase("tpall")) {
 			
-			Teleport teleport = new Teleport(plugin, player, args);	
-			teleport.Commands_tpall();
+			if(args.length < 2) {
+			
+				Teleport teleport = new Teleport(plugin, player, args);	
+				teleport.Commands_tpall();
+			}
+			else {
+				
+				player.sendMessage(error_nbArgs);
+			}
 		}
 		
 		else if(label.equalsIgnoreCase("put")) {
 			
-			Teleport teleport = new Teleport(plugin, player, args);	
-			teleport.Commands_put();
+			if(args.length == 4) {
+			
+				Teleport teleport = new Teleport(plugin, player, args);	
+				teleport.Commands_put();
+			}
+			else {
+				
+				player.sendMessage(error_nbArgs);
+			}
 		}
 		
 		else if(label.equalsIgnoreCase("accept")) {
 			
-			Teleport teleport = new Teleport(plugin, player, args);	
-			teleport.Command_accept(tpMap);
+			if(args.length == 0) {
+				
+				Teleport teleport = new Teleport(plugin, player, args);	
+				tpMap = teleport.Command_accept(tpMap);
+			}
+			else {
+				
+				player.sendMessage(error_nbArgs);
+			}
 		}
 		
 		else if(label.equalsIgnoreCase("refuse")) {
 			
 			Teleport teleport = new Teleport(plugin, player, args);	
-			teleport.Command_refuse(tpMap);
+			tpMap = teleport.Command_refuse(tpMap);
 		}
 		
 		// Les divers commandes
@@ -138,12 +174,6 @@ public class commandManager {
 			utils.Commands_rules();
 		}
 		
-		else if(label.equalsIgnoreCase("broadcast")) {
-			
-			Utils utils = new Utils(plugin, player, args);
-			utils.Commands_broadcast();
-		}
-		
 		// Les commandes du spawn
 		
 		else if(label.equalsIgnoreCase("spawn")) {
@@ -169,3 +199,4 @@ public class commandManager {
 		return true;
 	}
 }
+
