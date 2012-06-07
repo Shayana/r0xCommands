@@ -38,5 +38,3 @@ commands:
     description: affiche les regles
   whois:
     description: affiche des renseignements sur un joueur
-  broadcast:
-    description: gere les messages avec couleurs
