@@ -26,154 +26,140 @@ public class Teleport {
 		
 		tpMap = Map;
 		
-			if (args.length < 1){
-		  	
-				player.sendMessage(ChatColor.RED +"Vous devez spécifier un endroit ou vous téléporter !");
-			  	
-				return tpMap;	
-		    }
-			else if (args.length == 1) {
+		if (args.length == 1) {
 				
-				Player p1 = plugin.getServer().getPlayer(args[0]);
+			Player p1 = plugin.getServer().getPlayer(args[0]);
 			  	
-		        if (p1 == null) {
+	        if (p1 == null) {
 			  	
-		          player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+	          player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
 			  	
-		          return tpMap;
+	          return tpMap;
 			  	
-		        }
+	        }
 			  	
-		        if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
+	        if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
 			  	
-				player.teleport(p1);
+			player.teleport(p1);
 			  	
-		        }
+	        }
 			  	
-		        else {
+	        else {
 			  	
-		          player.sendMessage(ChatColor.BLUE + "Demande de téléportation envoyée à " + p1.getDisplayName());
+	          player.sendMessage(ChatColor.RED + "Demande de tÃ©lÃ©portation envoyÃ©e Ã  " + p1.getDisplayName());
 		  	
-		          p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais se téléporter à vous, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
+	          p1.sendMessage(ChatColor.RED + player.getDisplayName()+" souhaiterais se tÃ©lÃ©porter Ã  vous, tapez /accept pour accepter ou /deny pour refuser.");
 			  	
-		          tpMap.put(p1, player);
-		        }
+	          tpMap.put(p1, player);
+	        }
+		}
+		else if (args.length == 2) {
+
+			if (!(plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))){
+			  	
+				player.sendMessage(ChatColor.RED +"Vous n'avez pas la permission de faire ceci !");
+			  	
 			}
-			else if (args.length == 2) {
+		    else {
+		    	
+		    	Player p1 = plugin.getServer().getPlayer(args[0]);
 			  	
-		       if (!(plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))){
-			  	
-		          player.sendMessage(ChatColor.RED +"Vous n'avez pas la permission de faire ceci !");
-			  	
-		       }
-		       else {
-			  	
-		          Player p1 = plugin.getServer().getPlayer(args[0]);
-			  	
-		          Player p2 = plugin.getServer().getPlayer(args[1]);
-			  	
-		          if (p1 == null ||  p2 == null){
-			  	
-		        	  player.sendMessage(ChatColor.RED+ "Erreur sur l'un des noms de joueurs.");
-			  	
+		    	if (p1 == null){
+		    		
+		    		player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
 		            return tpMap;
-		          }
+		    	}
+		    	
+		    	Player p2 = plugin.getServer().getPlayer(args[1]);
+		    	
+		    	if (p2 == null){
+		    		
+		    		player.sendMessage(ChatColor.RED + args[1] + " n'est pas en ligne actuellement.");
+		            return tpMap;
+		    	}
 			  	
-		          p1.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " vous téléporte à "+ p2.getDisplayName());
+		    	p1.sendMessage(ChatColor.RED +player.getDisplayName()+ " vous tÃ©lÃ©porte Ã  "+ p2.getDisplayName());
 			  	
-		          p2.sendMessage(ChatColor.BLUE +player.getDisplayName()+ " téléporte "+ p1.getDisplayName() +" à votre position");
+		    	p2.sendMessage(ChatColor.RED +player.getDisplayName()+ " tÃ©lÃ©porte "+ p1.getDisplayName() +" Ã  votre position");
 			  	
-		          p1.teleport(p2);
+		    	p1.teleport(p2);
 		          
-		       }
+		    }
 		       
-		       return tpMap;    
-			}
-			else if(args.length == 3) {
+			return tpMap;    
+			
+		}
+		else if(args.length == 3) {
+			
+			if(!(plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))) {
 				
-				if((plugin.vault.perms.playerInGroup(player, plugin.config.superTP()))) {
-					double x = Double.parseDouble(args[0]);
-					double y = Double.parseDouble(args[1]);
-					double z = Double.parseDouble(args[2]);
+				double x = Double.parseDouble(args[0]);
+				double y = Double.parseDouble(args[1]);
+				double z = Double.parseDouble(args[2]);
 					
-					Location location = new Location(player.getWorld(), x, y, z);
+				Location location = new Location(player.getWorld(), x, y, z);
 					
-					player.teleport(location);
-				}
+				player.teleport(location);
 			}
+			else {
+				
+				player.sendMessage(ChatColor.RED +"Vous n'avez pas la permission de faire ceci !");
+			}
+		}
 		
 		return tpMap;
 	}
 	
 	public Map<Player, Player> Commands_tph(Map<Player, Player> Map) {
 		
-		tpMap = Map;
-		
-		if(args.length > 0) {
-			
-			Player p1 = plugin.getServer().getPlayer(args[0]);
-		  	
-		      if (p1 == null){
+		tpMap = Map;			
+		Player p1 = plugin.getServer().getPlayer(args[0]);		  	
+
+		if (p1 == null){
 			  	
-		        player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
+			player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellement.");
 			  	
-		        return tpMap;
-		      }
-			  	
-		      if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
-			  	
-		        p1.teleport(player);
-		      }	
-		      else {
-			  	
-		    	  p1.sendMessage(ChatColor.BLUE + player.getDisplayName()+" souhaiterais vous téléporter à lui, tapez "+ ChatColor.GREEN +  "/accept "+ ChatColor.BLUE +"pour accepter, ou "+ ChatColor.BLUE +"/deny "+ ChatColor.GREEN +"pour refuser.");
-		    	  tpMap.put(player, p1);
-		      }
-			
 			return tpMap;
 		}
+			  	
+		if (plugin.vault.perms.playerInGroup(player, plugin.config.superTP())) {
+			  	
+			p1.teleport(player);
+		}	
 		else {
-			
-			player.sendMessage(ChatColor.RED + "Veuillez indiquer un joueur");
+			  	
+			p1.sendMessage(ChatColor.RED + player.getDisplayName()+" souhaiterais vous tÃ©lÃ©porter Ã  lui, tapez /accept pour accepter ou /deny pour refuser.");
+			tpMap.put(player, p1);
 		}
-		
 		return tpMap;
 	}
 	
 	public void Commands_put() {
-		
-		if(args.length == 4) {
 			
-			Player p1 = plugin.getServer().getPlayer(args[0]);
+		Player p1 = plugin.getServer().getPlayer(args[0]);
 			
-			if(p1 == null) {
+		if(p1 == null) {
 					
-				player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellemnt.");
+			player.sendMessage(ChatColor.RED + args[0] + " n'est pas en ligne actuellemnt.");
 					
-				return;
-			}
-				
-			double x = Double.parseDouble(args[1]);
-			double y = Double.parseDouble(args[2]);
-			double z = Double.parseDouble(args[3]);
-				
-			Location location = new Location(player.getWorld(), x, y, z);
-				
-			p1.teleport(location);
-			p1.sendMessage(ChatColor.RED + player.getName() + " vous a téléporté à la position " + x + " " + y + " " + z);
+			return;
 		}
-		
-		else {
 				
-			player.sendMessage(ChatColor.RED + "Veuillez respecter la syntaxe");
-		}
+		double x = Double.parseDouble(args[1]);
+		double y = Double.parseDouble(args[2]);
+		double z = Double.parseDouble(args[3]);
+				
+		Location location = new Location(player.getWorld(), x, y, z);
+				
+		p1.teleport(location);
+		p1.sendMessage(ChatColor.RED + player.getName() + " vous a tÃ©lÃ©portÃ© Ã  la position " + x + " " + y + " " + z);
 	}
 	
 	public void Commands_tpall() {
 		
 		if(args.length == 0) {
 				
-			player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + player.getName());
+			player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez Ãªtre tous tÃ©lÃ©porter vers " + player.getName());
 				
 			for(Player p : Bukkit.getOnlinePlayers()) {
 						
@@ -184,8 +170,8 @@ public class Teleport {
 				
 			Player p1 = plugin.getServer().getPlayer(args[0]); 
 					
-			player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez être tous téléporter vers " + p1.getName());
-			p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se téléporter sur vous");
+			player.getServer().broadcastMessage(ChatColor.RED + "Attention, vous allez Ãªtre tous tÃ©lÃ©porter vers " + p1.getName());
+			p1.sendMessage(ChatColor.RED + "Attention, tout les joueurs vont se tÃ©lÃ©porter sur vous");
 					
 			for(Player p : Bukkit.getOnlinePlayers()) {
 				
@@ -217,7 +203,7 @@ public class Teleport {
 			}
 		}
 		
-		player.sendMessage(ChatColor.RED + "Personne ne vous a demandé une téléportation.");
+		player.sendMessage(ChatColor.RED + "Personne ne vous a demandÃ© une tÃ©lÃ©portation.");
 		
 		return tpMap;
 	}
@@ -226,6 +212,14 @@ public class Teleport {
 		
 		tpMap = Map;
 		
+		StringBuilder message = new StringBuilder();
+		
+		for(int i = 0; i < args.length ; i++) {
+			
+			message.append(args[i]);
+			message.append(" ");
+		}
+		
 		for(Entry<Player, Player> entry : tpMap.entrySet()) {
 
 			Player key = entry.getKey();
@@ -233,21 +227,39 @@ public class Teleport {
 
 			if(key == player) {
 
-				value.sendMessage(ChatColor.RED + key.getName() + " a refusé votre invitation.");
+				value.sendMessage(ChatColor.RED + key.getName() + " a refusÃ© votre invitation.");
+				
+				if(args.length > 0) {
+					
+					value.sendMessage(ChatColor.RED + "[Justification :] " + ChatColor.WHITE + message.toString());
+				}
+				else {
+					
+					value.sendMessage(ChatColor.RED + "[Justification :] Aucune");
+				}
 				tpMap.remove(key);
 				return tpMap;
 			}
 			else if(value == player) {
 
-				key.sendMessage(ChatColor.RED + value.getName() + " a refusé votre invition.");
+				key.sendMessage(ChatColor.RED + value.getName() + " a refusÃ© votre invition.");
+				if(args.length > 0) {
+				
+					key.sendMessage(ChatColor.RED + "[Justification :] " + ChatColor.WHITE + message.toString());
+				}
+				else {
+					
+					key.sendMessage(ChatColor.RED + "[Justification :] Aucune");
+				}
 				tpMap.remove(key);
 				return tpMap;
 			}
 		}
 		
-		player.sendMessage(ChatColor.RED + "Personne ne vous a demandé une téléportation");
+		player.sendMessage(ChatColor.RED + "Personne ne vous a demandÃ© une tÃ©lÃ©portation");
 		
 		return tpMap;
 	}
 
 }
+
